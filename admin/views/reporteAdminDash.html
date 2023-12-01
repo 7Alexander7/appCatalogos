@@ -1,0 +1,35 @@
+
+
+<div class="card">
+    <div class="card-header p-3 pt-2">
+        <div
+            class="icon icon-lg icon-shape bg-gradient-info shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">assessment</i>
+        </div>
+        <div class="text-center pt-3 mt-3">
+            <h4 class="font-weight-bolder">Reporte de Pedidos Realizados por Tienda</h4>
+        </div>
+    </div>
+    <hr class="dark horizontal my-0">
+    <div class="container my-4">
+        <input type="hidden" id="idEmpresa">
+        <table id="tblReportePedido" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>EMPRESA</th>
+                    <th>PEDIDOS</th>
+                    <th>SUBTOTAL</th>
+                    <th>IVA</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th colspan="4" style="text-align:right"></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<script src="../controllers/reporteAdminDash.js"></script>

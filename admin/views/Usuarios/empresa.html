@@ -1,0 +1,69 @@
+<div class="card">
+    <div class="card-header p-3 pt-2">
+        <div
+            class="icon icon-lg icon-shape bg-gradient-info shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">manage_accounts</i>
+        </div>
+        <div class="text-center pt-3 mt-3">
+            <img src="" id="banner" class="my-3" height="150">
+            <h4 class="font-weight-bolder">Perfil de la empresa</h4>
+            <p>Lea verifique y modifique de ser necesario sus datos</p>
+        </div>
+    </div>
+    <hr class="dark horizontal my-0">
+    <div class="card-body text-center mx-5">
+        <div class="row justify-content-center">
+            <input type="hidden" id="idUsuario">
+            <input type="hidden" id="idEmpresa">
+            <div class="col-6 col-md-6 col-sm-10 mx-2">
+                <div class="input-group input-group-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" placeholder="Ruc:"
+                        onkeypress="return soloNumeros(event)" id="ruc" name="ruc" autocomplete="off">
+                </div>
+            </div>
+            <div class="col-6 col-md-6 col-sm-10 mx-2">
+                <div class="input-group input-group-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" placeholder="Razon Social:"
+                        onkeypress="return soloLetras(event)" id="razonSocial" name="razonSocial" autocomplete="off">
+                </div>
+            </div>
+            <div class="col-6 col-md-6 col-sm-10 mx-2">
+                <div class="input-group input-group-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" placeholder="Nombre Comercial:"
+                        onkeypress="return soloLetras(event)" id="nombreComercial" name="nombreComercial"
+                        autocomplete="off">
+                </div>
+            </div>
+            <div class="col-6 col-md-6 col-sm-10 mx-2">
+                <div class="input-group input-group-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" placeholder="Direccion:" id="direccion"
+                        name="direccion" autocomplete="off">
+                </div>
+            </div>
+            <div class="col-6 col-md-6 col-sm-10 mx-2">
+                <div class="input-group input-group-outline mb-4">
+                    <input type="text" class="form-control form-control-lg" placeholder="Telefono:"
+                        onkeypress="return soloNumeros(event)" id="telefonoEmpresa" name="telefonoEmpresa"
+                        autocomplete="off">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr class="dark horizontal my-0">
+    
+    <div class="card-footer d-flex w-100 justify-content-center">
+        <button type="button" class="btn bg-gradient-danger my-2 mx-2" onclick="obtenerDatos()">
+            <i class="fa fa-refresh mx-2"></i>
+            <span>RESTABLECER</span>
+        </button>
+        <input type="file" name="image" id="file-input" class="btn bg-gradient-info my-2 mx-2" accept="image/jpeg, image/png" />
+        <button type="button" class="btn bg-gradient-info my-2 mx-2" onclick="guardarCambiosEmpresa()">
+            <i class="fa fa-save mx-2"></i>
+            <span>GUARDAR</span>
+        </button>
+    </div>
+</div>
+
+<script src="../controllers/Usuarios/empresa.js"></script>

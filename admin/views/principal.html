@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <title>
+        AppCatalogos Admin
+    </title>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Nucleo Icons -->
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+    <link href="../assets/Datatables/datatables.min.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+
+<body class="g-sidenav-show  bg-gray-200">
+    <div class="loading-container" id="loading">
+        <div class="loading-content">
+            <img src="../assets/img/catalogostienda.png" alt="Cargando">
+            <span class="loading-text">Cargando...</span>
+        </div>
+    </div>
+    <aside
+        class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
+        id="sidenav-main">
+        <div class="sidenav-header">
+            <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard "
+                target="_blank">
+                <img src="../assets/img/catalogostienda.png" class="navbar-brand-img h-100" alt="main_logo">
+                <span class="ms-1 font-weight-bold text-white">App Catalogos</span>
+            </a>
+        </div>
+        <hr class="horizontal light mt-0 mb-2">
+        <div class="collapse navbar-collapse  w-auto h-100" id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white active bg-gradient-primary" href="#"
+                        onclick="reporte()">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">dashboard</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Escritorio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" onclick="cargarHoja('./Usuarios/perfil.html')">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">manage_accounts</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Perfil</span>
+                    </a>
+                </li>
+                <li class="nav-item" id="mnEmpresa">
+                    <a class="nav-link text-white" href="#" onclick="cargarHoja('./Usuarios/empresa.html')">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">camera_outdoor</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Empresa</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown" id="usuariosAdmin">
+                    <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="dropdownMenuButton">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">admin_panel_settings</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Usuarios Admin</span>
+                    </a>
+                    <ul class="dropdown-menu mx-3" aria-labelledby="dropdownMenuButton">
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#" onclick="cargarHoja('./Usuarios/nuevoUsuarioAdmin.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">person_add</i>
+                                    Nuevo Usuario
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#"
+                                onclick="cargarHoja('./Usuarios/listaUsuariosAdmin.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">group</i>
+                                    Lista Usuarios
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" id="usuariosTienda">
+                    <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="dropdownMenuButton">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">perm_contact_calendar</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Usuarios Tienda</span>
+                    </a>
+                    <ul class="dropdown-menu mx-3" aria-labelledby="dropdownMenuButton">
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#"
+                                onclick="cargarHoja('./Usuarios/nuevoUsuarioTienda.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">person_add</i>
+                                    Nuevo Usuario
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#"
+                                onclick="cargarHoja('./Usuarios/listaUsuariosTienda.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">group</i>
+                                    Lista Usuarios
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" id="mnTiendas">
+                    <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="dropdownMenuButton">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">shopping_bag</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Tiendas</span>
+                    </a>
+                    <ul class="dropdown-menu mx-3" aria-labelledby="dropdownMenuButton">
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#" onclick="cargarHoja('./Tiendas/nuevaTienda.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">person_add</i>
+                                    Nueva Tienda
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#" onclick="cargarHoja('./Tiendas/asignacionTiendas.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">feed</i>
+                                    Asignacion Tiendas
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#" onclick="cargarHoja('./Tiendas/listaTiendas.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">feed</i>
+                                    Lista Tiendas
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" id="mnServicios">
+                    <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="dropdownMenuButton">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">receipt_long</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Servicios</span>
+                    </a>
+                    <ul class="dropdown-menu mx-3" aria-labelledby="dropdownMenuButton">
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#" onclick="cargarHoja('./Servicios/nuevoServicio.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">loupe</i>
+                                    Nuevo Servicio
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#" onclick="cargarHoja('./Servicios/listaServicios.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">format_list_numbered_rtl</i>
+                                    Lista Servicios
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" id="mnProducto">
+                    <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="dropdownMenuButton">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">shopping_bag</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Productos</span>
+                    </a>
+                    <ul class="dropdown-menu mx-3" aria-labelledby="dropdownMenuButton">
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#" onclick="cargarHoja('./Productos/nuevoProducto.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">loupe</i>
+                                    Nuevo Producto
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#" onclick="cargarHoja('./Productos/listaProductos.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">format_list_numbered_rtl</i>
+                                    Lista Productos
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" id="mnPromociones">
+                    <a class="nav-link text-white dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="dropdownMenuButton">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">star</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Promociones</span>
+                    </a>
+                    <ul class="dropdown-menu mx-3" aria-labelledby="dropdownMenuButton">
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#" onclick="cargarHoja('./Promociones/nuevaPromocion.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">loupe</i>
+                                    Nueva Promocion
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="#" onclick="cargarHoja('./Promociones/listaPromociones.html')">
+                                <span class="nav-link-text ms-1 pt-1">
+                                    <i class="material-icons opacity-10 mx-2">format_list_numbered_rtl</i>
+                                    Lista Promociones
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" id="mnPedidos">
+                    <a class="nav-link text-white" href="#" onclick="cargarHoja('./Pedidos/listaPedidos.html')">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">fact_check</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Pedidos</span>
+                    </a>
+                </li>
+                <li class="nav-item" id="mnReportePedidos">
+                    <a class="nav-link text-white" href="#" onclick="cargarHoja('./Reportes/reportePedidos.html')">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">analytics</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Reporte Pedidos</span>
+                    </a>
+                </li>
+                <li class="nav-item" id="mnReporteServicios">
+                    <a class="nav-link text-white" href="#" onclick="cargarHoja('./Reportes/reporteServicios.html')">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">leaderboard</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Reporte Servicios</span>
+                    </a>
+                </li>
+                <li class="nav-item" id="mnReporteClientes">
+                    <a class="nav-link text-white" href="#" onclick="cargarHoja('./Reportes/reporteClientes.html')">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">pie_chart_outlined</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Reporte Clientes</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </aside>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+            data-scroll="true">
+            <div class="container-fluid py-1 px-3">
+                <nav aria-label="breadcrumb">
+                    <h6 class="font-weight-bolder mt-2 mb-0" id="titular"></h6>
+                </nav>
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
+                    <ul class="navbar-nav  justify-content-end">
+                        <li class="nav-item px-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0">
+                                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-bell cursor-pointer"></i>
+                                <span id="puntoNotificaciones"
+                                    class="hidden position-absolute top-10 start-75 translate-middle badge rounded-pill bg-danger border border-white small py-2 px-2">
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4"
+                                aria-labelledby="dropdownMenuButton" id="contenedorNotificaciones">
+                            </ul>
+                        </li>
+                        <li class="nav-item d-flex px-2 align-items-center">
+                            <a href="#" onclick="cerrarSesion()" class="nav-link text-body font-weight-bold px-0">
+                                <i class="fa fa-power-off me-sm-1"></i>
+                                <span class="d-sm-inline d-none">Cerrar Sesión</span>
+                            </a>
+                        </li>
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="container-fluid py-4">
+            <div class="row" id="contenedorPrincipal">
+            </div>
+            <footer class="footer py-4" id="footerCont">
+            </footer>
+        </div>
+    </main>
+    <div class="position-fixed bottom-1 end-1 z-index-2">
+        <div class="toast fade p-2 bg-white hide" role="alert" aria-live="assertive" id="successToast"
+            aria-atomic="true">
+            <div class="toast-header border-0">
+                <i class="material-icons text-success me-2">
+                    check
+                </i>
+                <span class="me-auto font-weight-bold toast-title">Material Dashboard </span>
+                <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"
+                    aria-hidden="true"></i>
+            </div>
+            <hr class="horizontal dark m-0">
+            <div class="toast-body">
+                Hello, world! This is a notification message.
+            </div>
+        </div>
+        <div class="toast fade p-2 mt-2 bg-gradient-info hide" role="alert" aria-live="assertive" id="infoToast"
+            aria-atomic="true">
+            <div class="toast-header bg-transparent border-0">
+                <i class="material-icons text-white me-2">
+                    notifications
+                </i>
+                <span class="me-auto text-white font-weight-bold toast-title">Material Dashboard </span>
+                <i class="fas fa-times text-md text-white ms-3 cursor-pointer" data-bs-dismiss="toast"
+                    aria-label="Close" aria-hidden="true"></i>
+            </div>
+            <hr class="horizontal light m-0">
+            <div class="toast-body text-white">
+                Hello, world! This is a notification message.
+            </div>
+        </div>
+        <div class="toast fade p-2 mt-2 bg-white hide" role="alert" aria-live="assertive" id="warningToast"
+            aria-atomic="true">
+            <div class="toast-header border-0">
+                <i class="material-icons text-warning me-2">
+                    travel_explore
+                </i>
+                <span class="me-auto font-weight-bold toast-title">Material Dashboard </span>
+                <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"
+                    aria-hidden="true"></i>
+            </div>
+            <hr class="horizontal dark m-0">
+            <div class="toast-body">
+                Hello, world! This is a notification message.
+            </div>
+        </div>
+        <div class="toast fade p-2 mt-2 bg-white hide" role="alert" aria-live="assertive" id="dangerToast"
+            aria-atomic="true">
+            <div class="toast-header border-0">
+                <i class="material-icons text-danger me-2">
+                    campaign
+                </i>
+                <span class="me-auto text-gradient text-danger font-weight-bold toast-title">Material Dashboard
+                </span>
+                <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"
+                    aria-hidden="true"></i>
+            </div>
+            <hr class="horizontal dark m-0">
+            <div class="toast-body">
+                Hello, world! This is a notification message.
+            </div>
+        </div>
+    </div>
+    <div class="fixed-plugin" id="pluginConfig">
+    </div>
+    <script>
+        setTimeout(function () {
+            var loadingElement = document.getElementById("loading");
+            loadingElement.classList.add("hidden");
+        }, 1000);
+    </script>
+    <!--   Core JS Files   -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/chartjs.min.js"></script>
+ <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="../assets/Datatables/datatables.min.js"></script>
+    <script src="../controllers/utilizables.js"></script>
+    <script src="../controllers/principal.js"></script>
+</body>
+
+</html>

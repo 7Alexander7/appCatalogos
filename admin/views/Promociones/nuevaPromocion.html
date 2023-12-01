@@ -1,0 +1,76 @@
+<div class="card">
+    <div class="card-header p-3 pt-2">
+        <div
+            class="icon icon-lg icon-shape bg-gradient-info shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">library_add</i>
+        </div>
+        <div class="text-center pt-3 mt-3">
+            <h4 class="font-weight-bolder">Nuevo Promocion</h4>
+            <p>Ingrese todos los datos que son necesarios</p>
+        </div>
+    </div>
+    <hr class="dark horizontal my-0">
+    <form action="#" id="formulario" method="post" onsubmit="return guardar(event)">
+        <div class="card-body text-center mx-5">
+
+            <div class="row justify-content-center">
+                <div class="col-6 col-md-8 col-sm-10 mx-2">
+
+                    <input type="hidden" id="idEmpresa">
+
+                    <label class="form-label" for="descripcion">Escoja el Servicio que va a tener la promocion:</label>
+                    <div class="input-group input-group-outline mb-3">
+                        <select type="text" id="selectServicio" class="form-control" required onchange="traerDatos()">
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group input-group-outline mb-3 is-filled">
+                                <label class="form-label" for="nombre">Nombre</label>
+                                <input type="text" id="nombre" class="form-control" onkeypress="return soloLetras(event)"
+                                    required autocomplete="off" disabled>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group input-group-outline mb-3 is-filled">
+                                <label class="form-label" for="descripcion">Descripción</label>
+                                <input type="text" id="descripcion" class="form-control" required autocomplete="off" disabled>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group input-group-outline mb-3 is-filled">
+                                <label class="form-label" for="costo">Costo</label>
+                                <input type="text" id="costo" class="form-control" required autocomplete="off"
+                                    onkeypress="return soloDecimales(event,this);" disabled>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group input-group-outline mb-3 is-filled">
+                                <label class="form-label" for="domicilio">Domicilio</label>
+                                <input type="text" id="domicilio" class="form-control" required autocomplete="off"
+                                    onkeypress="return soloDecimales(event,this);" disabled>
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="input-group input-group-outline mb-3">
+                        <label class="form-label" for="descuento">Porcentaje de descuento</label>
+                        <input type="text" id="descuento" class="form-control" required autocomplete="off"
+                            onkeypress="return soloDecimales(event,this);">
+                    </div>               
+                    <div class="card-footer d-flex w-100 justify-content-center">
+                        <button type="reset" class="btn bg-gradient-danger my-2 mx-2">
+                            <i class="fa fa-refresh mx-2"></i>
+                            <span>RESTABLECER</span>
+                        </button>
+                        <button type="submit" class="btn bg-gradient-info my-2 mx-2">
+                            <i class="fa fa-save mx-2"></i>
+                            <span>GUARDAR</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../controllers/Promociones/nuevaPromocion.js"></script>

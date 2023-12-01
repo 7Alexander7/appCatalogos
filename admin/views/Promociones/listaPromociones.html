@@ -1,0 +1,111 @@
+<link href="../assets/Datatables/datatables.min.css" rel="stylesheet" />
+<div class="card">
+    <div class="card-header p-3 pt-2">
+        <div
+            class="icon icon-lg icon-shape bg-gradient-info shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">fact_check</i>
+        </div>
+        <div class="text-center pt-3 mt-3">
+            <h4 class="font-weight-bolder">Lista de Promociones</h4>
+        </div>
+    </div>
+    <hr class="dark horizontal my-0">
+    <div class="container my-4">
+        <input type="hidden" id="idEmpresa">
+        <table id="miTabla" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>id</th>
+                    <th>NOMBRE</th>
+                    <th>COSTO</th>
+                    <th>DOMICILIO</th>
+                    <th>DESCUENTO</th>
+                    <th>FECHA</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div class="modal" id="modalDetalles">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-normal" id="modal-title-default">DETALLES DEL SERVICIO</h5>
+                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario de edición -->
+                <div class="container px-5 py-2">
+                    <form onsubmit="return guardar(event)">
+                        <div class="row justify-content-center">
+                            <div class="col-6 col-md-8 col-sm-10 mx-2">
+
+                                <center>
+                                    <div class="my-4 mb-4 mx-2">
+                                        <img id="imagen" class="img-thumbnail" height="200" src="#"
+                                            alt="Vista previa de la imagen">
+                                    </div>
+                                </center>
+                                <input type="hidden" id="idPromocion">
+
+                                <div class="input-group input-group-outline mb-3 is-filled">
+                                    <label class="form-label" for="nombre">Nombre</label>
+                                    <input type="text" id="nombre" class="form-control"
+                                        onkeypress="return soloLetras(event)" required autocomplete="off" disabled>
+                                </div>
+
+                                <div class="input-group input-group-outline mb-3 is-filled">
+                                    <label class="form-label" for="descripcion">Descripción</label>
+                                    <input type="text" id="descripcion" class="form-control" required autocomplete="off"
+                                        disabled>
+                                </div>
+
+                                <div class="input-group input-group-outline mb-3 is-filled">
+                                    <label class="form-label" for="costo">Costo</label>
+                                    <input type="text" id="costo" class="form-control" required autocomplete="off"
+                                        onkeypress="return soloDecimales(event,this);" disabled>
+                                </div>
+
+                                <div class="input-group input-group-outline mb-3 is-filled">
+                                    <label class="form-label" for="domicilio">Domicilio</label>
+                                    <input type="text" id="domicilio" class="form-control" required autocomplete="off"
+                                        onkeypress="return soloDecimales(event,this);" disabled>
+                                </div>
+
+                                <div class="input-group input-group-outline mb-3 is-filled">
+                                    <label class="form-label" for="domicilio">Fecha</label>
+                                    <input type="text" id="fecha" class="form-control" required autocomplete="off"
+                                        disabled>
+                                </div>
+
+                                <div class="input-group input-group-outline mb-3 is-filled">
+                                    <label class="form-label" for="domicilio">Descuento</label>
+                                    <input type="text" id="descuento" class="form-control" required autocomplete="off"
+                                        onkeypress="return soloDecimales(event,this);">
+                                </div>
+
+                                <div class="card-footer d-flex w-100 justify-content-center">
+                                    <button type="button" id="btnEliminar" class="btn bg-gradient-danger my-2 mx-2"
+                                        onclick="eliminar(event)">
+                                        <i class="fa fa-trash mx-2"></i>
+                                        <span>ELIMINAR PROMOCION</span>
+                                    </button>
+                                    <button type="submit" class="btn bg-gradient-info my-2 mx-2">
+                                        <i class="fa fa-save mx-2"></i>
+                                        <span>GUARDAR CAMBIOS</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/Datatables/datatables.min.js"></script>
+<script src="../controllers/Promociones/listaPromociones.js"></script>

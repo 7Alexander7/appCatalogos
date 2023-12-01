@@ -1,0 +1,63 @@
+<div class="card">
+    <div class="card-header p-3 pt-2">
+        <div
+            class="icon icon-lg icon-shape bg-gradient-info shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">person_add</i>
+        </div>
+        <div class="text-center pt-3 mt-3">
+            <h4 class="font-weight-bolder">Nuevo Usuario</h4>
+            <p>Ingrese todos los datos que son necesarios</p>
+        </div>
+    </div>
+    <hr class="dark horizontal my-0">
+    <form onsubmit="return guardarUsuario(event)">
+        <div class="card-body text-center mx-5">
+
+            <div class="row justify-content-center">
+                <div class="input-group input-group-outline mb-3">
+                    <label class="form-label" for="cedula">Cédula</label>
+                    <input type="text" id="cedula" class="form-control" required autocomplete="off"
+                        onkeypress="return soloNumeros(event)" onchange="comprobarCedula(event)">
+                </div>
+
+                <div class="input-group input-group-outline mb-3">
+                    <label class="form-label" for="nombre">Nombre</label>
+                    <input type="text" onkeypress="return soloLetras(event)" id="nombre" class="form-control" required
+                        autocomplete="off">
+                </div>
+
+                <div class="input-group input-group-outline mb-3">
+                    <label class="form-label" for="apellido">Apellido</label>
+                    <input type="text" onkeypress="return soloLetras(event)" id="apellido" class="form-control" required
+                        autocomplete="off">
+                </div>
+
+                <div class="input-group input-group-outline mb-3">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required autocomplete="off">
+                </div>
+
+                <div class="input-group input-group-outline mb-3">
+                    <label class="form-label" for="telefono">Teléfono</label>
+                    <input type="text" id="telefono" onkeypress="return soloNumeros(event)" class="form-control"
+                        required autocomplete="off">
+                </div>
+            </div>
+        </div>
+
+        <hr class="dark horizontal my-0">
+        <div class="card-footer d-flex w-100 justify-content-center">
+            <button type="button" class="btn bg-gradient-secondary my-2 mx-2" onclick="restablecer()">
+                <i class="fa fa-refresh mx-2"></i>
+                <span>RESTABLECER</span>
+            </button>
+            <button type="submit" class="btn bg-gradient-info my-2 mx-2">
+                <i class="fa fa-save mx-2"></i>
+                <span>GUARDAR</span>
+            </button>
+
+        </div>
+    </form>
+</div>
+
+<script src="../controllers/Usuarios/nuevoUsuariosAdmin.js"></script>

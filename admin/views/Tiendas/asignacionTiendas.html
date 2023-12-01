@@ -1,0 +1,149 @@
+<link href="../assets/Datatables/datatables.min.css" rel="stylesheet" />
+<div class="card">
+    <div class="card-header p-3 pt-2">
+        <div
+            class="icon icon-lg icon-shape bg-gradient-info shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">group</i>
+        </div>
+        <div class="text-center pt-3 mt-3">
+            <h4 class="font-weight-bolder">Asignacion Tiendas a Usuarios</h4>
+        </div>
+    </div>
+    <hr class="dark horizontal my-0">
+    <div class="container my-4">
+        <ul class="nav nav-pills my-1 justify-content-center align-items-center" id="pills-tab" role="tablist">
+            <li class="nav-item mx-2" role="presentation">
+                <button class="btn btn-info active" type="button" id="pills-home-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                    aria-selected="true" onclick="traerDatosAsignadas(1)">Tiendas asignadas</button>
+            </li>
+            <li class="nav-item mx-2" role="presentation">
+                <button class="btn btn-danger" type="button" id="pills-profile-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                    aria-selected="false" onclick="traerDatosNoAsignadas(1)">Tiendas sin asignar</button>
+            </li>
+        </ul>
+        <hr>
+        <div class="tab-content mb-2" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                tabindex="0">
+                <table id="miTabla" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>RUC</th>
+                            <th>Razón Social</th>
+                            <th>Nombre Comercial</th>
+                            <th>Teléfono Empresa</th>
+                            <th>Dirección</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                tabindex="0">
+                <table id="miTabla2" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>id</th>
+                            <th>RUC</th>
+                            <th>Razón Social</th>
+                            <th>Nombre Comercial</th>
+                            <th>Teléfono Empresa</th>
+                            <th>Dirección</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal" id="modalMasDatos">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-normal" id="modal-title-default">Imagen y detalle de la empresa</h5>
+                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario de edición -->
+                <div class="container px-5 py-2">
+                    <div class="row justify-content-center">
+                        <div class="col-6 col-md-8 col-sm-10 mx-2">
+
+                            <div class="my-4 mb-4 mx-2" style="justify-content: center; align-items: center;">
+                                <img id="imagen" class="img-thumbnail" height="200" src="#"
+                                    alt="Vista previa de la imagen">
+                            </div>
+                            <div class="input-group input-group-outline mb-3 is-filled">
+                                <label class="form-label" for="ruc">RUC</label>
+                                <input type="text" id="ruc" class="form-control" onkeypress="return soloNumeros(event)"
+                                    onchange="comprobarCedula(event)" required autocomplete="off">
+                            </div>
+                            <div class="input-group input-group-outline mb-3 is-filled">
+                                <label class="form-label" for="razonsocial">Razón Social</label>
+                                <input type="text" id="razonsocial" class="form-control"
+                                    onkeypress="return soloLetras(event)" required autocomplete="off">
+                            </div>
+                            <div class="input-group input-group-outline mb-3 is-filled">
+                                <label class="form-label" for="nombrecomercial">Nombre Comercial</label>
+                                <input type="text" id="nombrecomercial" class="form-control"
+                                    onkeypress="return soloLetras(event)" required autocomplete="off">
+                            </div>
+                            <div class="input-group input-group-outline mb-3 is-filled">
+                                <label class="form-label" for="telefonoEmpresa">Teléfono</label>
+                                <input type="text" id="telefono" class="form-control"
+                                    onkeypress="return soloNumeros(event)" required autocomplete="off">
+                            </div>
+                            <div class="input-group input-group-outline mb-3 is-filled">
+                                <label class="form-label" for="direccion">Dirección</label>
+                                <input type="text" id="direccion" class="form-control" required autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modalAsignar">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-normal" id="modal-title-default">Imagen y detalle de la empresa</h5>
+                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario de edición -->
+                <div class="container px-5 py-2">
+                    <input type="hidden" id="idEmpresa">
+                    <div class="row justify-content-center">
+                        <table id="miTabla3" class="display responsive nowrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>CEDULA</th>
+                                    <th>NOMBRE</th>
+                                    <th>APELLIDO</th>
+                                    <th>EMAIL</th>
+                                    <th>TELEFONO</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/Datatables/datatables.min.js"></script>
+<script src="../controllers/Tiendas/asignacionTiendas.js"></script>

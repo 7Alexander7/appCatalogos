@@ -1,0 +1,18 @@
+<div id="map" style="height: 300px; width: 100%; background-color: aqua;"></div>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD78RUY7KyrZzZ-aW1bZ2GU0u8HeUedO2Y&callback=initMap">
+    </script>
+<script>
+    function initMap() {
+        var cord = { lat: Number(localStorage.lat), lng: Number(localStorage.lon) }
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: cord,
+            zoom: 15
+        });
+        var marker = new google.maps.Marker({
+        position: cord,
+        map: map,
+        animation: google.maps.Animation.BOUNCE
+    });
+    }
+</script>

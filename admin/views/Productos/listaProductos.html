@@ -1,0 +1,119 @@
+<link href="../assets/Datatables/datatables.min.css" rel="stylesheet" />
+<div class="card">
+    <div class="card-header p-3 pt-2">
+        <div
+            class="icon icon-lg icon-shape bg-gradient-info shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+            <i class="material-icons opacity-10">fact_check</i>
+        </div>
+        <div class="text-center pt-3 mt-3">
+            <h4 class="font-weight-bolder">Lista de Productos</h4>
+        </div>
+    </div>
+    <hr class="dark horizontal my-0">
+    <div class="container my-4">
+        <ul class="nav nav-pills my-1 justify-content-center align-items-center">
+            <li class="nav-item mx-2">
+                <button class="btn btn-info" type="button" onclick="traerDatos(1,'ACTIVO')" id="pills-home-tab">Productos Activos</button>
+            </li>
+            <li class="nav-item mx-2">
+                <button class="btn btn-danger" onclick="traerDatos(1,'INACTIVO')" type="button">Productos Desactivados</button>
+            </li>
+        </ul>
+        <hr>
+        <input type="hidden" id="idEmpresa">
+        <table id="miTabla" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>id</th>
+                    <th>NOMBRE</th>
+                    <th>DESCRIPCION</th>
+                    <th>COSTO</th>
+                    <th>DOMICILIO</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div class="modal" id="modalDetalles">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-normal" id="modal-title-default">DETALLES DEL PRODUCTO</h5>
+                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario de edición -->
+                <div class="container px-5 py-2">
+                    <form onsubmit="return guardar(event)">
+                        <div class="row justify-content-center">
+                            <div class="col-6 col-md-8 col-sm-10 mx-2">
+
+                                <center>
+                                    <div class="my-4 mb-4 mx-2">
+                                        <img id="imagen" class="img-thumbnail" height="200" src="#"
+                                            alt="Vista previa de la imagen">
+                                    </div>
+                                </center>
+                                <div class="dropdown my-2" style="justify-content: center; align-items: center;">
+                                    <label class="btn btn-primary btn-file" style="margin-top: 10px;"
+                                        id="labelImageUpload">
+                                        <span id="tituloImg">Seleccionar imagen</span><input type="file"
+                                            id="imageUpload" accept="image/*" style="display: none;">
+                                    </label>
+                                    <button id="uploadButton" type="button" class="btn btn-success mx-2"
+                                        style="display: none;">Subir</button>
+                                </div>
+                                <input type="hidden" id="idProducto">
+                                <input type="hidden" id="estado">
+
+                                <div class="input-group input-group-outline mb-3 is-filled">
+                                    <label class="form-label" for="nombre">Nombre</label>
+                                    <input type="text" id="nombre" class="form-control"
+                                        onkeypress="return soloLetras(event)" required autocomplete="off">
+                                </div>
+
+                                <div class="input-group input-group-outline mb-3 is-filled">
+                                    <label class="form-label" for="descripcion">Descripción</label>
+                                    <input type="text" id="descripcion" class="form-control" required
+                                        autocomplete="off">
+                                </div>
+
+                                <div class="input-group input-group-outline mb-3 is-filled">
+                                    <label class="form-label" for="costo">Costo</label>
+                                    <input type="text" id="costo" class="form-control" required autocomplete="off"
+                                        onkeypress="return soloDecimales(event,this);">
+                                </div>
+
+                                <div class="input-group input-group-outline mb-3 is-filled">
+                                    <label class="form-label" for="domicilio">Domicilio</label>
+                                    <input type="text" id="domicilio" class="form-control" required autocomplete="off"
+                                        onkeypress="return soloDecimales(event,this);">
+                                </div>
+                                <div class="card-footer d-flex w-100 justify-content-center">
+                                    <button type="button" id="btnDesactivar" class="btn bg-gradient-danger my-2 mx-2" onclick="actEstado('DESACTIVAR')">
+                                        <i class="fa fa-trash mx-2"></i>
+                                        <span>DESACTIVAR PRODUCTO</span>
+                                    </button>
+                                    <button type="button" id="btnActivar" class="btn bg-gradient-danger my-2 mx-2" onclick="actEstado('ACTIVAR')">
+                                        <i class="fa fa-trash mx-2"></i>
+                                        <span>ACTIVAR PRODUCTO</span>
+                                    </button>
+                                    <button type="submit" class="btn bg-gradient-info my-2 mx-2">
+                                        <i class="fa fa-save mx-2"></i>
+                                        <span>GUARDAR</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/Datatables/datatables.min.js"></script>
+<script src="../controllers/Productos/listaProductos.js"></script>

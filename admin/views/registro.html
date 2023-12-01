@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <title>
+        AppCatalogos Admin
+    </title>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <!-- Nucleo Icons -->
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/multi-step-form.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+</head>
+
+<body class="bg-gray-200 dark-version">
+    <main class="main-content  mt-0">
+        <div class="page-header align-items-start min-vh-100"
+            style="background-image: url('../assets/img/fondologin.jpg');">
+            <div class="container my-auto">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 col-12 mx-auto">
+                        <div class="card z-index-0 fadeIn3 fadeInBottom">
+                            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1">
+                                    <button class="btn text-white position-absolute" onclick="volver('./login.html')" type="button"><i
+                                            class="fa fa-arrow-left"></i></button>
+                                    <div class="row justify-content-center text-center">
+                                        <img class="rounded-circle" style="height: 100px; width: 135px;"
+                                            src="../assets/img/catalogostienda.png">
+                                    </div>
+                                    <h4 class="text-white font-weight-bolder text-center mt-3 mb-0">Registro de nueva
+                                        empresa</h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="container body-content">
+                                    <form class="form-horizontal msf" onsubmit="registro(event)">
+                                        <div class="msf-content">
+                                            <div class="msf-view">
+                                                <h5 class="text-white font-weight-bolder text-center mb-2"
+                                                    style="margin-top: -40px;">Datos Personales</h5>
+                                                <div class="table-group-divider mb-4"></div>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-6">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">CEDULA:</label>
+                                                            <input id="cedula" name="cedula" type="text"
+                                                                class="form-control" data-bind="value: Cedula"
+                                                                data-val="true" data-val-required="Requerido"
+                                                                onkeypress="return soloNumeros(event)"
+                                                                onchange="comprobarCedula(event)" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">NOMBRES:</label>
+                                                            <input id="nombre" name="nombre" type="text"
+                                                                class="form-control" data-bind="value: Nombre"
+                                                                data-val="true" data-val-required="Requerido"
+                                                                onkeypress="return soloLetras(event)"
+                                                                autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">APELLIDOS:</label>
+                                                            <input id="apellido" name="apellido" type="text"
+                                                                class="form-control" data-bind="value: Apellido"
+                                                                data-val="true" data-val-required="Requerido"
+                                                                onkeypress="return soloLetras(event)"
+                                                                autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">EMAIL:</label>
+                                                            <input id="email" name="email" type="text"
+                                                                class="form-control" data-bind="value: Email"
+                                                                data-val="true" data-val-required="Requerido"
+                                                                autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">TELEFONO:</label>
+                                                            <input id="telefono" name="telefono" type="text"
+                                                                class="form-control" data-bind="value: Telefono"
+                                                                data-val="true" data-val-required="Requerido"
+                                                                onkeypress="return soloNumeros(event)"
+                                                                autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msf-view">
+                                                <h5 class="text-white font-weight-bolder text-center mb-2"
+                                                    style="margin-top: -40px;">Datos de la Empresa</h5>
+                                                <div class="table-group-divider mb-4"></div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">RUC:</label>
+                                                            <input id="ruc" name="ruc" type="text" class="form-control"
+                                                                data-bind="value: Ruc" data-val="true"
+                                                                data-val-required="Requerido"
+                                                                onkeypress="return soloNumeros(event)"
+                                                                autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">RAZON SOCIAL:</label>
+                                                            <input id="razonSocial" name="razonSocial" type="text"
+                                                                class="form-control" data-bind="value: RazonSocial"
+                                                                data-val="true" data-val-required="Requerido"
+                                                                onkeypress="return soloLetras(event)"
+                                                                autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">NOMBRE COMERCIAL:</label>
+                                                            <input id="nombreComercial" name="nombreComercial"
+                                                                type="text" class="form-control"
+                                                                data-bind="value: NombreComercial" data-val="true"
+                                                                data-val-required="Requerido"
+                                                                onkeypress="return soloLetras(event)"
+                                                                autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">TELEFONO EMPRESA:</label>
+                                                            <input id="telefonoEmpresa" name="telefonoEmpresa"
+                                                                type="text" class="form-control"
+                                                                data-bind="value: TelefonoEmpresa" data-val="true"
+                                                                data-val-required="Requerido"
+                                                                onkeypress="return soloNumeros(event)"
+                                                                autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="input-group input-group-outline my-2">
+                                                    <label class="form-label">DIRECCION EMPRESA:</label>
+                                                    <input id="direccionEmpresa" name="direccionEmpresa" type="text"
+                                                        class="form-control" data-bind="value: DireccionEmpresa"
+                                                        data-val="true" data-val-required="Requerido"
+                                                        autocomplete="off">
+                                                </div>
+                                            </div>
+                                            <div class="msf-view">
+                                                <h5 class="text-white font-weight-bolder text-center mb-2"
+                                                    style="margin-top: -40px;">Datos de Seguridad</h5>
+                                                <div class="table-group-divider mb-4"></div>
+                                                <dov class="row">
+                                                    <div class="col-6 offset-3">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">PASSWROD:</label>
+                                                            <input id="pass" name="pass" type="text"
+                                                                class="form-control" data-bind="value: Pass1"
+                                                                data-val="true" data-val-required="Requerido"
+                                                                autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 offset-3">
+                                                        <div class="input-group input-group-outline my-2">
+                                                            <label class="form-label">VERIFICACION DE PASSWORD:</label>
+                                                            <input id="pass2" name="pass2" type="text"
+                                                                class="form-control" data-bind="value: Pass2"
+                                                                data-val="true" data-val-required="Requerido"
+                                                                autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </dov>
+                                            </div>
+                                        </div>
+                                        <div class="msf-navigation">
+                                            <div class="row">
+                                                <div class="col offset-2">
+                                                    <button type="button" data-type="back"
+                                                        class="btn bg-gradient-info w-100 my-4 mb-2"><i
+                                                            class="fa fa-arrow-left"></i> Atras</button>
+                                                </div>
+                                                <div class="col">
+                                                    <button type="button" data-type="next"
+                                                        class="btn bg-gradient-info w-100 my-4 mb-2">Siguiente <i
+                                                            class="fa fa-arrow-right"></i></button>
+                                                </div>
+                                                <div class="col">
+                                                    <button type="submit" data-type="submit"
+                                                        class="btn bg-gradient-info w-100 my-4 mb-2">Finalizar</button>
+                                                </div>
+                                                <div class="col-2"></div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                    <span class="sr-only">0% Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="position-fixed bottom-1 end-1 z-index-2">
+        <div class="toast fade p-2 bg-white hide" role="alert" aria-live="assertive" id="successToast"
+            aria-atomic="true">
+            <div class="toast-header border-0">
+                <i class="material-icons text-success me-2">
+                    check
+                </i>
+                <span class="me-auto font-weight-bold toast-title">Material Dashboard </span>
+                <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"
+                    aria-hidden="true"></i>
+            </div>
+            <hr class="horizontal dark m-0">
+            <div class="toast-body">
+                Hello, world! This is a notification message.
+            </div>
+        </div>
+        <div class="toast fade p-2 mt-2 bg-gradient-info hide" role="alert" aria-live="assertive" id="infoToast"
+            aria-atomic="true">
+            <div class="toast-header bg-transparent border-0">
+                <i class="material-icons text-white me-2">
+                    notifications
+                </i>
+                <span class="me-auto text-white font-weight-bold toast-title">Material Dashboard </span>
+                <i class="fas fa-times text-md text-white ms-3 cursor-pointer" data-bs-dismiss="toast"
+                    aria-label="Close" aria-hidden="true"></i>
+            </div>
+            <hr class="horizontal light m-0">
+            <div class="toast-body text-white">
+                Hello, world! This is a notification message.
+            </div>
+        </div>
+        <div class="toast fade p-2 mt-2 bg-white hide" role="alert" aria-live="assertive" id="warningToast"
+            aria-atomic="true">
+            <div class="toast-header border-0">
+                <i class="material-icons text-warning me-2">
+                    travel_explore
+                </i>
+                <span class="me-auto font-weight-bold toast-title">Material Dashboard </span>
+                <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"
+                    aria-hidden="true"></i>
+            </div>
+            <hr class="horizontal dark m-0">
+            <div class="toast-body">
+                Hello, world! This is a notification message.
+            </div>
+        </div>
+        <div class="toast fade p-2 mt-2 bg-white hide" role="alert" aria-live="assertive" id="dangerToast"
+            aria-atomic="true">
+            <div class="toast-header border-0">
+                <i class="material-icons text-danger me-2">
+                    campaign
+                </i>
+                <span class="me-auto text-gradient text-danger font-weight-bold toast-title">Material Dashboard
+                </span>
+                <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"
+                    aria-hidden="true"></i>
+            </div>
+            <hr class="horizontal dark m-0">
+            <div class="toast-body">
+                Hello, world! This is a notification message.
+            </div>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/material-dashboard.min.js?v=3.0.4"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="../assets/js/multi-step-form.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript" src="../controllers/utilizables.js"></script>
+    <script type="text/javascript" src="../controllers/registro.js"></script>
+    <script type="text/javascript">
+        function ViewModel() {
+            var self = this;
+
+            self.Nombre = ko.observable('');
+            self.Apellido = ko.observable('');
+            self.Email = ko.observable('');
+            self.Telefono = ko.observable('');
+            self.Cedula = ko.observable('');
+            //empresa
+            self.Ruc = ko.observable('');
+            self.RazonSocial = ko.observable('');
+            self.NombreComercial = ko.observable('');
+            self.DireccionEmpresa = ko.observable('');
+            self.TelefonoEmpresa = ko.observable('');
+            //seguridad
+            self.Pass1 = ko.observable('');
+            self.Pass2 = ko.observable('');
+
+        }
+
+        var viewModel = new ViewModel();
+
+        ko.applyBindings(viewModel);
+
+        $(document).on("msf:viewChanged", function (event, data) {
+            var progress = Math.round((data.completedSteps / data.totalSteps) * 100);
+
+            $(".progress-bar").css("width", progress + "%").attr('aria-valuenow', progress);;
+        });
+
+        $(".msf:first").multiStepForm({
+            activeIndex: 0,
+            validate: {},
+            hideBackButton: false,
+            allowUnvalidatedStep: false,
+            allowClickNavigation: true
+        });
+    </script>
+</body>
+
+</html>
